@@ -2,6 +2,7 @@ package com.example.codeblog.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -28,6 +31,7 @@ public class Post {
 	private LocalDate data;
 	@NotBlank
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	private String texto;
 
 	public Integer getId() {
