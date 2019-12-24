@@ -1,7 +1,10 @@
 package com.example.codeblog.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,7 @@ public class PostServiceImpl implements PostService {
 		return post.get();
 	}
 
+	@Transactional
 	@Override
 	public Post save(Post post) {
 		return postRepository.save(post);
