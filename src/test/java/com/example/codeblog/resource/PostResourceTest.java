@@ -1,14 +1,11 @@
 package com.example.codeblog.resource;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Assume;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.example.codeblog.BaseTest;
@@ -20,7 +17,6 @@ import com.google.gson.GsonBuilder;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class PostResourceTest extends BaseTest {
@@ -51,10 +47,13 @@ public class PostResourceTest extends BaseTest {
 				.body("data", is("2019-12-19"))
 			;
 	}
-	
+		
 	@Test
 	public void deveSalvarUmPost() throws Exception {
-	
+		Response response = RestAssured.request(Method.GET, "/posts/{id}", 5);
+		// skip test if id exists
+		Assume.assumeTrue(response.statusCode() == 404);
+		
 		Post post = new Post();
 		post.setAutor("Laudeci Morais");
 		post.setTitulo("OAUTH");

@@ -28,8 +28,8 @@ public class PostResource {
 	}
 
 	@GetMapping("/{id}")
-	public Post buscarPorId(@PathVariable Integer id) {
-		return postService.findById(id);
+	public ResponseEntity<Post> buscarPorId(@PathVariable Integer id) {
+		return ResponseEntity.ok(postService.findById(id));
 	}
 	
 	@PostMapping
